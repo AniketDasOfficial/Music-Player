@@ -194,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         Thread.sleep( 50 );
                         runOnUiThread(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
 
@@ -205,8 +206,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 //Update Time in text
 
-//                                leftTime.setText(String.valueOf(new java.text.SimpleDateFormat("mm:ss") .format(new Date(mediaPlayer.getCurrentPosition()))));
-//                                rightTime.setText(String.valueOf(new java.text.SimpleDateFormat("mm:ss").format(mediaPlayer.getDuration() - mediaPlayer.getCurrentPosition())));
+                                @SuppressLint("SimpleDateFormat") String s = String.valueOf(new java.text.SimpleDateFormat("mm:ss") .format(new Date(mediaPlayer.getCurrentPosition())));
+                                String [] str = s.split(":");
+                                int a = Integer.parseInt(str[0]) - 30;
+                                leftTime.setText(a + ":" + str[1]);
+
+                                @SuppressLint("SimpleDateFormat") String s1 = String.valueOf(new java.text.SimpleDateFormat("mm:ss")
+                                        .format(mediaPlayer.getDuration() - mediaPlayer.getCurrentPosition()));
+                                System.out.println(s + " | " + s1);
+                                String [] str1 = s1.split(":");
+                                int a1 = Integer.parseInt(str1[0]) - 30;
+                                rightTime.setText(a1 +":"+str1[1]);
 
 
 //                                int start = mediaPlayer.getCurrentPosition();
